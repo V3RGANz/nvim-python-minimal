@@ -1,7 +1,7 @@
 local status_ok, api = pcall(require, "nvim-tree.api")
 local M = {}
 if not status_ok then
-    M.gid_add = function ()
+    M.git_add = function ()
     end
     return M
 end
@@ -29,6 +29,6 @@ local git_add = function()
   api.tree.reload()
 end
 
-M.gid_add = git_add
+M.git_add = git_add
 
 return M
