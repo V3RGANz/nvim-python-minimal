@@ -2,12 +2,12 @@ local M = {}
 
 M.setup = function()
     -- not use it actually, H/W/E/I is good and minimalistic
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
+    -- local signs = {
+    --   { name = "DiagnosticSignError", text = "" },
+    --   { name = "DiagnosticSignWarn", text = "" },
+    --   { name = "DiagnosticSignHint", text = "" },
+    --   { name = "DiagnosticSignInfo", text = "" },
+    -- }
     local config = {
         virtual_text = false,
         update_in_insert = true,
