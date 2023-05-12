@@ -12,6 +12,7 @@ return packer.startup(function(use)
 
     -- colorschemes
     use "catppuccin/nvim"
+    use "ellisonleao/gruvbox.nvim"
     use "folke/tokyonight.nvim"
 
     -- completion
