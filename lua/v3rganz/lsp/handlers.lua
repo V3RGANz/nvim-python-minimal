@@ -1,13 +1,6 @@
 local M = {}
 
 M.setup = function()
-    -- not use it actually, H/W/E/I is good and minimalistic
-    -- local signs = {
-    --   { name = "DiagnosticSignError", text = "" },
-    --   { name = "DiagnosticSignWarn", text = "" },
-    --   { name = "DiagnosticSignHint", text = "" },
-    --   { name = "DiagnosticSignInfo", text = "" },
-    -- }
     local config = {
         virtual_text = false,
         update_in_insert = true,
@@ -22,17 +15,7 @@ M.setup = function()
             prefix = "",
         },
     }
-
     vim.diagnostic.config(config)
-
-    -- not sure, maybe this can be deleted
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
-
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-    })
 end
 
 local function lsp_highlight_document(client)
