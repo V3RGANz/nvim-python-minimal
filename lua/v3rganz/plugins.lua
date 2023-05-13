@@ -14,6 +14,7 @@ return packer.startup(function(use)
     use "catppuccin/nvim"
     use "ellisonleao/gruvbox.nvim"
     use "folke/tokyonight.nvim"
+    use "rebelot/kanagawa.nvim"
 
     -- completion
     -- nvim-cmp
