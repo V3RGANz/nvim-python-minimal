@@ -27,6 +27,6 @@ mason.setup(mason_settings)
 mason_lspconfig.setup({
 	ensure_installed = servers,
     automatic_installation = true,
-    handlers = require('v3rganz.lsp.mason-handlers').handlers
+    handlers = require('v3rganz.lsp.handlers').handlers
 })
 
