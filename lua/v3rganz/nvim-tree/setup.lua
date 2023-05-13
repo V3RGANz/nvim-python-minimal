@@ -3,24 +3,6 @@ if not status_ok then
     return
 end
 
-
-local function key_mappings_on_attach(bufnr)
-    local api = require('nvim-tree.api')
-    local function opts(desc)
-        return {
-            desc = 'nvim-tree: ' .. desc,
-            buffer = bufnr,
-            noremap = true,
-            silent = true,
-            nowait = true
-        }
-    end
-    api.config.mappings.default_on_attach(bufnr)
-    vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
-    vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close node'))
-    vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical split'))
-end
-
 tree.setup {
     diagnostics = {
         enable = true,
@@ -44,7 +26,7 @@ tree.setup {
             '.null-ls*'
         }
     },
-    on_attach = key_mappings_on_attach,
+    on_attach = require('v3rganz.keymaps').nvim_tree_keymaps,
     renderer = {
         highlight_git = true,
         icons = {

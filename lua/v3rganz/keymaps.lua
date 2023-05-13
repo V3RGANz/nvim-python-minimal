@@ -109,5 +109,23 @@ return {
         keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
         keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
         vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+    end,
+
+    nvim_tree_keymaps = function(bufnr)
+        local api = require('nvim-tree.api')
+        local function opts(desc)
+            return {
+                desc = 'nvim-tree: ' .. desc,
+                buffer = bufnr,
+                noremap = true,
+                silent = true,
+                nowait = true
+            }
+        end
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+        vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close node'))
+        vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical split'))
     end
+
 }
