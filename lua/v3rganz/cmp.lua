@@ -30,6 +30,19 @@ end
 
 local disallowed_paths = {'*/bazel-*/*', '*/venv/*', '*/.venv/*'}
 
+local function get_referenced_item_path(completion_item)
+    local path = nil
+    if completion_item.labelDetails then
+      path = ''
+      if completion_item.labelDetails.description then
+        path = path .. completion_item.labelDetails.description
+      end
+    end
+    return path
+end
+
+local util = require('v3rganz.util')
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -82,12 +95,20 @@ cmp.setup({
     end, { "i", "s" }),
   }),
   sources = {
-    { name = "nvim_lsp", option = {disallowed_paths = disallowed_paths}},
+    {
+        name = "nvim_lsp",
+        entry_filter = function (entry, ctx)
+            local path = get_referenced_item_path(entry.completion_item)
+            if path ~= nil then
+                if util.match_path(disallowed_paths, path) then
+                    return false
+                end
+            end
+            return true
+        end
+    },
     { name = 'luasnip' },
     { name = 'buffer' },
-    {
-        name = 'path',
-        option = {disallowed_paths = disallowed_paths}
-    },
+    { name = 'path' },
   }
 })
