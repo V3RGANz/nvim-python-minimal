@@ -53,7 +53,7 @@ cmp.setup({
     },
 
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items. }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
     -- SuperTab taken from:
     -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
