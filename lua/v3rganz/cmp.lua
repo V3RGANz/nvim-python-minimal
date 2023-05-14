@@ -33,9 +33,8 @@ local disallowed_paths = {'*/bazel-*/*', '*/venv/*', '*/.venv/*'}
 local function get_referenced_item_path(completion_item)
     local path = nil
     if completion_item.labelDetails then
-      path = ''
       if completion_item.labelDetails.description then
-        path = path .. completion_item.labelDetails.description
+        path = completion_item.labelDetails.description
       end
     end
     return path
