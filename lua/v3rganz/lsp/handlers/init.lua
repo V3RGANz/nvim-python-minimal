@@ -79,6 +79,26 @@ M.handlers = {
     --
     --     lspconfig.pyright.setup(server_opts)
     -- end
+    ['lua_ls'] = function ()
+        local server_opts = {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {'vim'}
+                    },
+                    workspace = {
+                        library = {
+                            -- vim.api.nvim_get_runtime_file("", true)
+                            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                            [vim.fn.stdpath('config') .. '/lua'] = true
+                        }
+                    }
+                }
+            }
+        }
+        server_opts = vim.tbl_deep_extend('force', opts, server_opts)
+        lspconfig.lua_ls.setup(server_opts)
+    end
 }
 
 return M
