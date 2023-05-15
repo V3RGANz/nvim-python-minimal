@@ -1,13 +1,13 @@
 local status_ok, api = pcall(require, "nvim-tree.api")
 local M = {}
 if not status_ok then
-    M.git_add = function ()
+    M.git_add_toggle = function ()
     end
     return M
 end
 
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#git-stage-unstage-files-and-directories-from-the-tree
-local git_add = function()
+function M.git_add_toggle()
   local node = api.tree.get_node_under_cursor()
   local gs = node.git_status.file
 
@@ -28,7 +28,5 @@ local git_add = function()
 
   api.tree.reload()
 end
-
-M.git_add = git_add
 
 return M

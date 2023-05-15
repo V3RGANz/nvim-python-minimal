@@ -1,6 +1,6 @@
 local M = {}
 
-M.match_path = function(patterns, path)
+function M.match_path(patterns, path)
     -- modules, at least in python, separated by dot, unlike paths
     path = path:gsub('%.', '/')
     -- normalize to always start with slash
