@@ -54,6 +54,8 @@ return packer.startup(function(use)
     use "nvim-tree/nvim-tree.lua"
     -- buffer line
     use 'akinsho/bufferline.nvim'
+    -- highlighting symbols
+    use "RRethy/vim-illuminate"
     use 'moll/vim-bbye' -- for :Bdelete stuff, optional bcz :bdelete
     use 'akinsho/toggleterm.nvim'
 
