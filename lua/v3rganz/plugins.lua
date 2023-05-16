@@ -56,6 +56,11 @@ return packer.startup(function(use)
     use 'akinsho/bufferline.nvim'
     -- highlighting symbols
     use "RRethy/vim-illuminate"
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'nvim-tree/nvim-web-devicons' }
+    }
+    use 'windwp/windline.nvim'
     use 'moll/vim-bbye' -- for :Bdelete stuff, optional bcz :bdelete
     use 'akinsho/toggleterm.nvim'
 
