@@ -9,6 +9,7 @@ vim.opt.ignorecase = true
 vim.opt.mouse = "a" -- maybe change this later
 vim.opt.pumheight = 10 -- maybe too big ?
 vim.opt.showmode = false -- not sure if I need this
+vim.opt.laststatus = 3
 vim.opt.showtabline = 2
 vim.opt.smartcase = true -- need ?
 vim.opt.smartindent = true
@@ -24,7 +25,7 @@ vim.opt.writebackup = false -- may be this is not good? read WARNING
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.cursorline = true -- I dont need this
+vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 4
@@ -40,3 +41,12 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 -- commented this, because bwe ge keys are also interpreted hyphenated
 -- words as single word
 -- vim.opt.iskeyword:append "-" -- hyphenated-words recognizerd by search
+
+-- Illuminate plugin higlighting
+vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+
+-- undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
