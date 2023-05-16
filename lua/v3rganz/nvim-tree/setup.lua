@@ -23,7 +23,7 @@ tree.setup {
     },
     filters = {
         custom = {
-            '.null-ls*'
+            '\\.null-ls*'
         }
     },
     on_attach = require('v3rganz.keymaps').nvim_tree_keymaps,
