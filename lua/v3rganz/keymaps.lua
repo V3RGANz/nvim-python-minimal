@@ -82,8 +82,8 @@ vim.keymap.set('n', 'ga', require('v3rganz.plugin_utils.nvim-tree.git-commands')
 
 
 -- toggleterm key bindings
-vim.keymap.set('n', '<leader>g', require('v3rganz.plugins.toggleterm').lazygit, {})
-vim.keymap.set('n', '<C-p>', require('v3rganz.plugins.toggleterm').python, {})
+vim.keymap.set('n', '<leader>g', require('v3rganz.plugin_utils.toggleterm').lazygit, {})
+vim.keymap.set('n', '<C-p>', require('v3rganz.plugin_utils.toggleterm').python, {})
 
 if vim.fn.executable(':Bdelete') then
     keymap("n", "<leader>b", ":Bdelete<CR>", opts)
