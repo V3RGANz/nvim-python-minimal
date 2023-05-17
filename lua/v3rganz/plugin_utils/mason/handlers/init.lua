@@ -1,28 +1,5 @@
 local M = {}
 
-M.setup = function()
-    local config = {
-        virtual_text = false,
-        update_in_insert = true,
-        underline = true,
-        severity_sort = true,
-        float = {
-            focusable = false,
-            style = "minimal",
-            border = "rounded",
-            source = "always",
-            header = "",
-            prefix = "",
-        },
-    }
-    vim.diagnostic.config(config)
-end
-
-local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_ok then
-    vim.notify('lspconfig failed to load')
-    return
-end
 -- local function parent_dir()
 --    local str = debug.getinfo(2, "S").source:sub(2)
 --    return str:match("(.*/)") or "./"
@@ -30,26 +7,28 @@ end
 
 -- local pyright_config_path = parent_dir() .. 'pyrightconfig.json'
 
--- should not be modified, reused in all servers
-local opts = {
-    on_attach = function(clinet, bufnr)
-        require('v3rganz.keymaps').lsp_keymaps(bufnr)
-        local illuminate_ok, illuminate = pcall(require, 'illuminate')
-        if illuminate_ok then
-            illuminate.on_attach(clinet)
+local function get_base_opts()
+    local opts = {
+        on_attach = function(clinet, bufnr)
+            require('v3rganz.keymaps').lsp_keymaps(bufnr)
+            local illuminate_ok, illuminate = pcall(require, 'illuminate')
+            if illuminate_ok then
+                illuminate.on_attach(clinet)
+            end
         end
-    end
-}
+    }
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if status_ok then
-    opts.capabilities = cmp_nvim_lsp.default_capabilities()
+    local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if status_ok then
+        opts.capabilities = cmp_nvim_lsp.default_capabilities()
+    end
+    return opts
 end
 
 -- add custom settings for language-servers
 M.handlers = {
     function (server_name)
-        lspconfig[server_name].setup(opts)
+        require("lspconfig")[server_name].setup(get_base_opts())
     end,
     -- ['pyright'] = function ()
     --     vim.notify('custom opts for pyright')
@@ -83,8 +62,8 @@ M.handlers = {
                 }
             }
         }
-        server_opts = vim.tbl_deep_extend('force', opts, server_opts)
-        lspconfig.lua_ls.setup(server_opts)
+        server_opts = vim.tbl_deep_extend('force', get_base_opts(), server_opts)
+        require("lspconfig").lua_ls.setup(server_opts)
     end
 }
 

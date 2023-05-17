@@ -1,9 +1,9 @@
-local status_ok, tree = pcall(require, "nvim-tree")
-if not status_ok then
-    return
-end
+local M = {
+    "nvim-tree/nvim-tree.lua",
+    event = "VimEnter"
+}
 
-tree.setup {
+M.opts = {
     diagnostics = {
         enable = true,
         icons = {
@@ -49,3 +49,5 @@ tree.setup {
         }
     }
 }
+
+return M

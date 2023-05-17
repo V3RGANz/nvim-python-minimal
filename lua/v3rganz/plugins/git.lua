@@ -1,9 +1,9 @@
-local status_ok, git_signs = pcall(require, "gitsigns")
-if not status_ok then
-    return
-end
+local M = {
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPost"
+}
 
-git_signs.setup({
+M.opts = {
     current_line_blame = true,
     current_line_blame_opts = {
         virt_text = true,
@@ -11,4 +11,6 @@ git_signs.setup({
         delay = 0
     },
     current_line_blame_formatter = '<committer> <committer_time> - <summary>'
-})
+}
+
+return M

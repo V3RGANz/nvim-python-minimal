@@ -78,12 +78,12 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
-vim.keymap.set('n', 'ga', require('v3rganz.nvim-tree.git-commands').git_add_toggle, { desc = 'Git add this node'})
+vim.keymap.set('n', 'ga', require('v3rganz.plugin_utils.nvim-tree.git-commands').git_add_toggle, { desc = 'Git add this node'})
 
 
 -- toggleterm key bindings
-vim.keymap.set('n', '<leader>g', require('v3rganz.toggleterm').lazygit, {})
-vim.keymap.set('n', '<C-p>', require('v3rganz.toggleterm').python, {})
+vim.keymap.set('n', '<leader>g', require('v3rganz.plugins.toggleterm').lazygit, {})
+vim.keymap.set('n', '<C-p>', require('v3rganz.plugins.toggleterm').python, {})
 
 if vim.fn.executable(':Bdelete') then
     keymap("n", "<leader>b", ":Bdelete<CR>", opts)
