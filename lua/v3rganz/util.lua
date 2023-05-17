@@ -35,4 +35,12 @@ function M.str_join(str_array, sep)
     return res
 end
 
+-- Not sure if it works without copy-pasting because I think it returns
+-- directory of script at top of call stack, wich is always
+-- util in this case
+function M.script_parent_location()
+   local str = debug.getinfo(2, "S").source:sub(2)
+   return str:match("(.*/)") or "./"
+end
+
 return M

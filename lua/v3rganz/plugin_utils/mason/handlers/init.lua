@@ -1,10 +1,5 @@
 local M = {}
 
--- local function parent_dir()
---    local str = debug.getinfo(2, "S").source:sub(2)
---    return str:match("(.*/)") or "./"
--- end
-
 -- local pyright_config_path = parent_dir() .. 'pyrightconfig.json'
 
 local function get_base_opts()
