@@ -104,7 +104,8 @@ return {
         keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
         -- <C-k> may conflict with keymaps for switching panes ?
         keymap("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-        keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+        -- keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+        keymap("n", "gr", "<cmd>:Telescope lsp_references<CR>", opts)
         keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
         keymap(
             "n",
