@@ -1,5 +1,7 @@
 local M = {}
 
+-- matches all glob-like `patterns` to `path`. Assuming `path` is dot-separated path to module.
+-- this is naive implementation and may not cover non-obvious inputs
 function M.match_path(patterns, path)
     -- modules, at least in python, separated by dot, unlike paths
     path = path:gsub('%.', '/')
@@ -25,6 +27,7 @@ function M.str_startswith(str, start)
     return string.sub(str, 1, string.len(start)) == start
 end
 
+-- joins strings in `str_array` with string `sep`
 function M.str_join(str_array, sep)
     local res = str_array[1]
     for index, value in ipairs(str_array) do
