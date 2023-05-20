@@ -103,7 +103,7 @@ return {
         keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
         keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
         -- <C-k> may conflict with keymaps for switching panes ?
-        keymap("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+        keymap("n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
         -- keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
         keymap("n", "gr", "<cmd>:Telescope lsp_references<CR>", opts)
         keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
@@ -115,6 +115,7 @@ return {
         )
         keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
         keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+        keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
         vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
     end,
 
