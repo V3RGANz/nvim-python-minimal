@@ -1,9 +1,3 @@
--- local status_ok, autopairs = pcall(require, "nvim-autopairs")
--- if not status_ok then
---     vim.notify("autopairs failed to load")
---     return
--- end
-
 local M = {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
