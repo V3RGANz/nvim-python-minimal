@@ -6,7 +6,7 @@ local M = {
 function M.config()
     require('toggleterm').setup {
         size = 30,
-        open_mapping = [[<c-\>]],
+        open_mapping = require("v3rganz.keymaps").toggleterm,
     }
     require('v3rganz.plugin_utils.toggleterm').setup()
 end

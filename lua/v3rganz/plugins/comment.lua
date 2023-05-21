@@ -4,7 +4,7 @@ local M = {
 }
 
 M.opts = {
-    operator_mapping = "<leader>/"
+    operator_mapping = require("v3rganz.keymaps").comment_operator
 }
 
 function M.config()

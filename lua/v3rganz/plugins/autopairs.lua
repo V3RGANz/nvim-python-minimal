@@ -21,7 +21,7 @@ function M.config()
         },
 
         fast_wrap = {
-            map = '<M-e>',
+            map = require("v3rganz.keymaps").autopairs_fast_wrap,
             chars = { '{', '[', '(', '"', "'" },
             pattern = [=[[%'%"%>%]%)%}%,]]=],
             end_key = '$',

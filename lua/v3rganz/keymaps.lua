@@ -58,25 +58,21 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 
 -- Telescope --
-vim.keymap.set('n', '<leader>f', function()
-	require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-		winblend = 10,
-  		previewer = false,
-    })
-end, { desc = '[/] Fuzzily search in current buffer' })
-vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, {desc = "[?] Find recently opened files"})
-vim.keymap.set("n", "<leader><space>", require("telescope.builtin").oldfiles, {desc = "[ ] Find existing buffers"})
-vim.keymap.set('n', '<leader>p', require('telescope.builtin').find_files, { desc = '[p] Search files' })
-vim.keymap.set('n', '<M-p>', function ()
-    require('telescope.builtin').find_files({
-        hidden = true,
-        no_ignore = true
-    })
-end, { desc = '[p] Search files (including ignored and hidden)' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+-- we dont want to `require` anything external in this module,
+-- as it may load before something was installed or 
+-- call non-existing dependencies,
+-- so we need to wrap it in another function
+local telescope_factories = require('v3rganz.plugin_utils.telescope').factories
+vim.keymap.set('n', '<leader>f', telescope_factories.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set("n", "<leader>?", telescope_factories.oldfiles, {desc = "[?] Find recently opened files"})
+vim.keymap.set("n", "<leader><space>", telescope_factories.oldfiles, {desc = "[ ] Find existing buffers"})
+vim.keymap.set('n', '<leader>p', telescope_factories.find_files, { desc = '[p] Search files' })
+vim.keymap.set('n', '<M-p>', telescope_factories.find_files_a, { desc = '[p] Search files (including ignored and hidden)' })
+vim.keymap.set('n', '<leader>sh', telescope_factories.help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', telescope_factories.grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sg', telescope_factories.live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sd', telescope_factories.diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 vim.keymap.set('n', 'ga', require('v3rganz.plugin_utils.nvim-tree.git-commands').git_add_toggle, { desc = 'Git add this node'})
 
@@ -91,6 +87,10 @@ else
     keymap("n", "<leader>b", ":bdelete")
 end
 
+
+-- keymaps to be imported separately by plugins
+-- decision to define them here was made in order to fast access
+-- and to be able to easily see what keymaps are defined by this config
 return {
     lsp_keymaps = function(bufnr)
         local opts = { noremap = true, silent = true }
@@ -120,6 +120,26 @@ return {
         vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
     end,
 
+    cmp_keymaps = function (cmp, luasnip)
+        local cmp_utils = require("v3rganz.plugin_utils.cmp")
+        return cmp.mapping.preset.insert({
+            ['<C-j'] = cmp.mapping.select_next_item(),
+            ['<C-k>'] = cmp.mapping.select_prev_item(),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            -- ['<C-y>'] = cmp.config.disable,
+            ['<C-e>'] = cmp.mapping {
+                i = cmp.mapping.abort(),
+                c = cmp.mapping.close(),
+            },
+            -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
+            ["<Tab>"] = cmp_utils.supertab(cmp, luasnip),
+            ["<S-Tab>"] = cmp_utils.s_supertab(cmp, luasnip),
+      })
+    end,
+
     nvim_tree_keymaps = function(bufnr)
         local api = require('nvim-tree.api')
         local function opts(desc)
@@ -135,6 +155,11 @@ return {
         vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
         vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close node'))
         vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical split'))
-    end
+    end,
 
+    comment_operator = "<leader>/",
+
+    autopairs_fast_wrap = '<M-e>',
+
+    toggleterm = [[<c-\>]],
 }
