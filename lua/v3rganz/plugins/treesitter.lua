@@ -4,7 +4,7 @@ local M = {
 }
 
 M.opts = {
-    ensure_installed = {"python", "lua", "c", "vim", "javascript", "typescript"},
+    ensure_installed = {"python", "lua", "c", "vim", "javascript", "typescript", "tsx"},
     highlight = {
         enable = true
     }
