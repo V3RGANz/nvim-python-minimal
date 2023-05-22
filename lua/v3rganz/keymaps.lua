@@ -24,10 +24,10 @@ keymap("n", "<leader>v", ":vsplit<CR>", opts)
 keymap("n", "<leader>h", ":split<CR>", opts)
 
 -- resize 'panes' with arrows
-keymap("n", "<S-C-k>", ":resize +2<CR>", opts)
-keymap("n", "<S-C-j>", ":resize -2<CR>", opts)
-keymap("n", "<S-C-h>", ":vertical resize +2<CR>", opts)
-keymap("n", "<S-C-l>", ":vertical resize -2<CR>", opts)
+keymap("n", "<S-M-k>", ":resize +2<CR>", opts)
+keymap("n", "<S-M-j>", ":resize -2<CR>", opts)
+keymap("n", "<S-M-h>", ":vertical resize +2<CR>", opts)
+keymap("n", "<S-M-l>", ":vertical resize -2<CR>", opts)
 
 
 -- Navigate buffers
