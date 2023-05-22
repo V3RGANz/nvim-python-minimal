@@ -20,6 +20,10 @@ local function get_base_opts()
     return opts
 end
 
+local function override_opts(overriden)
+    return vim.tbl_deep_extend("force",  get_base_opts(), overriden)
+end
+
 -- add custom settings for language-servers
 M.handlers = {
     function (server_name)
@@ -41,7 +45,7 @@ M.handlers = {
     --     lspconfig.pyright.setup(server_opts)
     -- end
     ['lua_ls'] = function ()
-        local server_opts = {
+        require("lspconfig").lua_ls.setup(override_opts {
             settings = {
                 Lua = {
                     diagnostics = {
@@ -56,9 +60,7 @@ M.handlers = {
                     }
                 }
             }
-        }
-        server_opts = vim.tbl_deep_extend('force', get_base_opts(), server_opts)
-        require("lspconfig").lua_ls.setup(server_opts)
+        })
     end
 }
 
