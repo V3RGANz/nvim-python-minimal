@@ -66,7 +66,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 local telescope_factories = require('v3rganz.plugin_utils.telescope').factories
 vim.keymap.set('n', '<leader>f', telescope_factories.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set("n", "<leader>?", telescope_factories.oldfiles, {desc = "[?] Find recently opened files"})
-vim.keymap.set("n", "<leader><space>", telescope_factories.oldfiles, {desc = "[ ] Find existing buffers"})
+vim.keymap.set("n", "<leader><space>", telescope_factories.buffers, {desc = "[ ] Find existing buffers"})
 vim.keymap.set('n', '<leader>p', telescope_factories.find_files, { desc = '[p] Search files' })
 vim.keymap.set('n', '<M-p>', telescope_factories.find_files_a, { desc = '[p] Search files (including ignored and hidden)' })
 vim.keymap.set('n', '<leader>sh', telescope_factories.help_tags, { desc = '[S]earch [H]elp' })

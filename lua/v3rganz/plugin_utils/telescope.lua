@@ -14,6 +14,10 @@ function M.factories.oldfiles()
     return require("telescope.builtin").oldfiles()
 end
 
+function M.factories.buffers()
+    return require("telescope.builtin").buffers()
+end
+
 function M.factories.find_files()
     return require('telescope.builtin').find_files()
 end
