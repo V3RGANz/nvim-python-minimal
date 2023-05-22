@@ -26,7 +26,7 @@ function M.config()
     require("mason-lspconfig").setup({
         ensure_installed = servers,
         automatic_installation = true,
-        handlers = require('v3rganz.plugin_utils.mason.handlers').handlers
+        handlers = require('v3rganz.plugins.util.mason.handlers').handlers
     })
 end
 

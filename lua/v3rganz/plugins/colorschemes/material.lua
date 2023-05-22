@@ -1,6 +1,6 @@
 local plug_address = "marko-cerovac/material.nvim"
 local lualine_style = 'stealth'
-local scheme_util = require('v3rganz.plugin_utils.colorschemes')
+local scheme_util = require('v3rganz.plugins.util.colorschemes')
 
 local M = {}
 

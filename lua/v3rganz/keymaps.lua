@@ -63,7 +63,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- as it may load before something was installed or 
 -- call non-existing dependencies,
 -- so we need to wrap it in another function
-local telescope_factories = require('v3rganz.plugin_utils.telescope').factories
+local telescope_factories = require('v3rganz.plugins.util.telescope').factories
 vim.keymap.set('n', '<leader>f', telescope_factories.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set("n", "<leader>?", telescope_factories.oldfiles, {desc = "[?] Find recently opened files"})
 vim.keymap.set("n", "<leader><space>", telescope_factories.buffers, {desc = "[ ] Find existing buffers"})
@@ -74,12 +74,12 @@ vim.keymap.set('n', '<leader>sw', telescope_factories.grep_string, { desc = '[S]
 vim.keymap.set('n', '<leader>sg', telescope_factories.live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', telescope_factories.diagnostics, { desc = '[S]earch [D]iagnostics' })
 
-vim.keymap.set('n', 'ga', require('v3rganz.plugin_utils.nvim-tree.git-commands').git_add_toggle, { desc = 'Git add this node'})
+vim.keymap.set('n', 'ga', require('v3rganz.plugins.util.nvim-tree.git-commands').git_add_toggle, { desc = 'Git add this node'})
 
 
 -- toggleterm key bindings
-vim.keymap.set('n', '<leader>g', require('v3rganz.plugin_utils.toggleterm').lazygit, {})
-vim.keymap.set('n', '<C-p>', require('v3rganz.plugin_utils.toggleterm').python, {})
+vim.keymap.set('n', '<leader>g', require('v3rganz.plugins.util.toggleterm').lazygit, {})
+vim.keymap.set('n', '<C-p>', require('v3rganz.plugins.util.toggleterm').python, {})
 
 if vim.fn.executable(':Bdelete') then
     keymap("n", "<leader>b", ":Bdelete<CR>", opts)
@@ -121,7 +121,7 @@ return {
     end,
 
     cmp_keymaps = function (cmp, luasnip)
-        local cmp_utils = require("v3rganz.plugin_utils.cmp")
+        local cmp_utils = require("v3rganz.plugins.util.cmp")
         return cmp.mapping.preset.insert({
             ['<C-j'] = cmp.mapping.select_next_item(),
             ['<C-k>'] = cmp.mapping.select_prev_item(),

@@ -21,7 +21,7 @@ local function block_style_ui_telescope()
         end
     })
 end
-local scheme_util = require('v3rganz.plugin_utils.colorschemes')
+local scheme_util = require('v3rganz.plugins.util.colorschemes')
 
 local M = {}
 

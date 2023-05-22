@@ -32,7 +32,7 @@ function M.config()
                     colored = true
                 },
                 {
-                    require("v3rganz.plugin_utils.lualine").lsp_bar,
+                    require("v3rganz.plugins.util.lualine").lsp_bar,
                     icon = ' LSP:',
                     -- color = { fg = '#ffffff', gui = 'bold' },
                 },

@@ -8,7 +8,7 @@ function M.config()
         size = 30,
         open_mapping = require("v3rganz.keymaps").toggleterm,
     }
-    require('v3rganz.plugin_utils.toggleterm').setup()
+    require('v3rganz.plugins.util.toggleterm').setup()
 end
 
 return M
