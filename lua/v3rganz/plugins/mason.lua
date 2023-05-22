@@ -9,7 +9,7 @@ local M = {
 }
 
 
-local servers = { "jsonls", "lua_ls", "pyright", "tsserver" }
+local servers = { "jsonls", "lua_ls", "pyright", "ruff_lsp", "tsserver", "cssls" }
 
 local mason_settings = {
     ui = {

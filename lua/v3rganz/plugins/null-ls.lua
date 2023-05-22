@@ -31,17 +31,17 @@ function M.config()
         sources = {
             formatting.black.with({ extra_args = { "--fast" } }),
             -- formatting.stylua,
-            diagnostics.flake8.with({
-                -- default max_line_length make 120, can be overrided in project
-                -- tox.ini
-                extra_args = { '--max_line_length=119' },
-                diagnostics_postprocess = function(d)
-                    -- stylistics problems not considered as errors
-                    if d.severity == helpers.diagnostics.severities.error then
-                        d.severity = helpers.diagnostics.severities.warning
-                    end
-            end,
-        }),
+        --     diagnostics.flake8.with({
+        --         -- default max_line_length make 120, can be overrided in project
+        --         -- tox.ini
+        --         extra_args = { '--max_line_length=119' },
+        --         diagnostics_postprocess = function(d)
+        --             -- stylistics problems not considered as errors
+        --             if d.severity == helpers.diagnostics.severities.error then
+        --                 d.severity = helpers.diagnostics.severities.warning
+        --             end
+        --     end,
+        -- }),
             diagnostics.mypy
         },
     })
