@@ -7,4 +7,4 @@ local schemes = {
     "marko-cerovac/material.nvim",
 }
 
-return require('v3rganz.plugins.colorschemes.material').factory('deep ocean')
+return require('v3rganz.plugins.colorschemes.monokai').factory('pro')
