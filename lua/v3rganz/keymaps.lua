@@ -15,6 +15,10 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- horizontal scroll faster
+keymap("n", "zh", "20zh", opts)
+keymap("n", "zl", "20zl", opts)
+
 -- explorer
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
