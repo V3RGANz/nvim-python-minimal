@@ -10,6 +10,7 @@ function M.factory(style)
             filter = style,
         })
         scheme_util.setup_colorscheme(CS.name)
+        scheme_util.setup_nvimtree_colors()
     end
 
     return CS
