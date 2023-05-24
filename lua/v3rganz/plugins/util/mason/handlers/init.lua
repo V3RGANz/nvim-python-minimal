@@ -29,21 +29,6 @@ M.handlers = {
     function (server_name)
         require("lspconfig")[server_name].setup(get_base_opts())
     end,
-    -- ['pyright'] = function ()
-    --     vim.notify('custom opts for pyright')
-    --     local server_opts = {
-    --         root_dir = function (filename, bufnr)
-    --             if string.find(filename, "build-") then
-    --                 return nil
-    --             end
-    --             return require("lspconfig.server_configurations.pyright").default_config.root_dir(filename, bufnr)
-    --         end
-    --         -- cmd = { 'pyright-langserver', '--stdio', '-p ' .. pyright_config_path}
-    --     }
-    --     server_opts = vim.tbl_deep_extend("force", opts, server_opts)
-    --
-    --     lspconfig.pyright.setup(server_opts)
-    -- end
     ['pyright'] = function ()
         -- disable diagnostics here. all diagnostics are in mypy & ruff
         local server_opts = get_base_opts()
