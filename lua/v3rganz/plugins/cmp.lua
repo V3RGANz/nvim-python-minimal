@@ -16,7 +16,25 @@ local M = {
                 "rafamadriz/friendly-snippets"
             }
         },
-        {"hrsh7th/cmp-nvim-lua"}
+        {"hrsh7th/cmp-nvim-lua"},
+
+        -- copilot 
+        {
+            "zbirenbaum/copilot-cmp",
+            dependencies = {
+                "zbirenbaum/copilot.lua",
+                cmd = "Copilot",
+                enabled = true, -- disable it by default
+                event = "BufReadPost",
+                config = function()
+                    require("copilot").setup()
+                end
+                },
+            config = function ()
+                require('copilot_cmp').setup()
+            end,
+            event = "BufReadPost"
+        }
     },
     event = {
         "InsertEnter",
@@ -30,12 +48,6 @@ function M.config()
 
     -- TODO figure out wtf is this
     require("luasnip/loaders/from_vscode").lazy_load()
-
-    local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
 
     local disallowed_paths = {'*/bazel-*/*', '*/venv/*', '*/.venv/*'}
 
@@ -63,6 +75,9 @@ function M.config()
       },
       mapping = require("v3rganz.keymaps").cmp_keymaps(cmp, luasnip),
       sources = {
+          {
+              name = "copilot",
+          },
         {
             name = "nvim_lsp",
             entry_filter = function (entry, ctx)
