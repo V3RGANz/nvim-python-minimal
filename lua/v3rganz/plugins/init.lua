@@ -5,8 +5,9 @@ return {
         lazy = true
     },
     {
-        "nvim-telescope/telescope.nvim",
-        event = "VimEnter"
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        event = "VimEnter",
     },
     {
         "RRethy/vim-illuminate",
