@@ -17,4 +17,8 @@ function M.setup_colorscheme(name)
     end
 end
 
+function M.setup_nvimtree_colors()
+    vim.cmd([[highlight NvimTreeGitStaged guifg=#a6e22e]])
+end
+
 return M
