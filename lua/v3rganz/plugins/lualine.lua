@@ -14,10 +14,32 @@ local M = {
     }
 }
 
+local available_separators = {
+    bubbles = {
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' }
+    },
+    powerline = {
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
+    }
+}
+
 function M.config()
+    local separators = available_separators.bubbles
     local config = {
+        options = {
+            section_separators = separators.section_separators,
+            component_separators = separators.component_separators
+        },
         sections = {
-            lualine_a = {'mode'},
+            lualine_a = {
+                {
+                    'mode',
+                    -- separator only for bubbles
+                    separator = {left = separators.section_separators.right},
+                }
+            },
             lualine_b = {
                 {'branch', icon = ''},
                 'diff',
@@ -40,7 +62,10 @@ function M.config()
             lualine_c = {'filename'},
             lualine_x = {},
             lualine_y = {'progress'},
-            lualine_z = {'location'}
+            lualine_z = {{
+                'location',
+                separator = {right = separators.section_separators.left},
+            }}
         }
     }
     require('lualine').setup(config)
