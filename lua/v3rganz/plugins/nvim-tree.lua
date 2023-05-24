@@ -23,11 +23,14 @@ M.opts = {
     },
     filters = {
         custom = {
-            '\\.null-ls*'
+            '\\.null-ls*',
+            '__pycache__',
         }
     },
     on_attach = require('v3rganz.keymaps').nvim_tree_keymaps,
     renderer = {
+        add_trailing = true,
+        indent_markers = {enable = true},
         highlight_git = true,
         icons = {
             show = {
@@ -39,7 +42,7 @@ M.opts = {
             glyphs = {
                 git = {
                     unstaged = 'X',
-                    staged = 'U',  -- [U]pdated
+                    staged = '+',  -- [U]pdated
                     renamed = '>',
                     untracked = '*',
                     deleted = '-',
