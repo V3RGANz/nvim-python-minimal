@@ -55,7 +55,7 @@ keymap("v", "p", '"_dP', opts)
 
 -- Visula block mode--
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "J", ":move '>+2<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 -- keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
@@ -68,11 +68,11 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- call non-existing dependencies,
 -- so we need to wrap it in another function
 local telescope_factories = require('v3rganz.plugins.util.telescope').factories
-vim.keymap.set('n', '<leader>f', telescope_factories.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>f', telescope_factories.current_buffer_fuzzy_find, { desc = '[F] Fuzzily search in current buffer' })
 vim.keymap.set("n", "<leader>?", telescope_factories.oldfiles, {desc = "[?] Find recently opened files"})
 vim.keymap.set("n", "<leader><space>", telescope_factories.buffers, {desc = "[ ] Find existing buffers"})
-vim.keymap.set('n', '<leader>p', telescope_factories.find_files, { desc = '[p] Search files' })
-vim.keymap.set('n', '<M-p>', telescope_factories.find_files_a, { desc = '[p] Search files (including ignored and hidden)' })
+vim.keymap.set('n', '<leader>p', telescope_factories.find_files, { desc = '[P] Search files' })
+vim.keymap.set('n', '<M-p>', telescope_factories.find_files_a, { desc = '[P] Search files (including ignored and hidden)' })
 vim.keymap.set('n', '<leader>sh', telescope_factories.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', telescope_factories.grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', telescope_factories.live_grep, { desc = '[S]earch by [G]rep' })
@@ -85,6 +85,10 @@ vim.keymap.set('n', 'ga', require('v3rganz.plugins.util.nvim-tree.git-commands')
 vim.keymap.set('n', '<leader>g', require('v3rganz.plugins.util.toggleterm').lazygit, {})
 vim.keymap.set('n', '<C-p>', require('v3rganz.plugins.util.toggleterm').python, {})
 
+
+-- closes window but not quit vim
+keymap("n", "<leader>w", ":close<CR>", opts)
+-- close buffer
 if vim.fn.executable(':Bdelete') then
     keymap("n", "<leader>b", ":Bdelete<CR>", opts)
 else
