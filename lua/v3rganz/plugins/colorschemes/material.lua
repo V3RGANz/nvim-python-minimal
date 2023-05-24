@@ -5,6 +5,7 @@ local scheme_util = require('v3rganz.plugins.util.colorschemes')
 local M = {}
 
 function M.factory(style)
+    style = style or "deep ocean"
     local CS = scheme_util.get_initial_table(plug_address, 'material')
     function CS.config()
         vim.g.material_style = style

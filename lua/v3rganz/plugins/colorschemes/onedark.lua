@@ -4,6 +4,7 @@ local scheme_util = require('v3rganz.plugins.util.colorschemes')
 local M = {}
 
 function M.factory(style)
+    style = style or "dark"
     local CS = scheme_util.get_initial_table(plug_address, "onedark")
     function CS.config()
         local onedark = require("onedark")

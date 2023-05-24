@@ -26,6 +26,7 @@ local scheme_util = require('v3rganz.plugins.util.colorschemes')
 local M = {}
 
 function M.factory(style)
+    style = style or "kanagawa-dragon"
     local CS = scheme_util.get_initial_table(plug_address, style)
     function CS.config()
         if use_block_style_telescope_ui then
