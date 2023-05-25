@@ -29,7 +29,7 @@ function M.config()
     null_ls.setup({
         debug = false,
         sources = {
-            formatting.black.with({ extra_args = { "--fast" } }),
+            -- formatting.black.with({ extra_args = { "--fast" } }),
             -- formatting.stylua,
         --     diagnostics.flake8.with({
         --         -- default max_line_length make 120, can be overrided in project
