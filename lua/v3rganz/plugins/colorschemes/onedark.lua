@@ -9,7 +9,7 @@ function M.factory(style)
     function CS.config()
         local onedark = require("onedark")
         if style == "light" then
-            -- onedark depends on this for determining colors
+            -- onedark depends on this for determining colors (which is probably derived from terminal)
             -- so we have to explicitly set it
             vim.o.background = "light"
         else
