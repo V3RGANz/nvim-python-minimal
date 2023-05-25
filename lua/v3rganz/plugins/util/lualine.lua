@@ -7,7 +7,7 @@ function M.lsp_bar()
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
     local clients = vim.lsp.get_active_clients()
     if next(clients) == nil then
-        return 'No Active Lsp'
+        return 'no active lsp'
     end
     for _, client in ipairs(clients) do
         local filetypes = client.config.filetypes
@@ -24,7 +24,7 @@ function M.lsp_bar()
         end
     end
     local msg = require('v3rganz.util').str_join(client_names, ', ')
-    return '[' .. msg .. ']'
+    return msg
 end
 
 return M

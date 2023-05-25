@@ -25,19 +25,24 @@ local available_separators = {
     }
 }
 
+local function get_current_buffer_filename()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    return bufname ~= '' and vim.fn.fnamemodify(bufname, ':.') or ''
+end
+
 function M.config()
     local separators = available_separators.bubbles
     local config = {
         options = {
             section_separators = separators.section_separators,
-            component_separators = separators.component_separators
+            component_separators = { left = " ", right = " " },
         },
         sections = {
             lualine_a = {
                 {
                     'mode',
                     -- separator only for bubbles
-                    separator = {left = separators.section_separators.right},
+                    separator = {left = separators.section_separators.right, right = separators.section_separators.left},
                 }
             },
             lualine_b = {
@@ -55,11 +60,11 @@ function M.config()
                 },
                 {
                     require("v3rganz.plugins.util.lualine").lsp_bar,
-                    icon = ' LSP:',
+                    icon = '',
                     -- color = { fg = '#ffffff', gui = 'bold' },
                 },
             },
-            lualine_c = {'filename'},
+            lualine_c = {get_current_buffer_filename},
             lualine_x = {},
             lualine_y = {'progress'},
             lualine_z = {{
