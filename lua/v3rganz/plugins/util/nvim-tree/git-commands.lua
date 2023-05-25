@@ -2,7 +2,11 @@ local M = {}
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#git-stage-unstage-files-and-directories-from-the-tree
 function M.git_add_toggle()
     local api = require("nvim-tree.api")
-    local node = api.tree.get_node_under_cursor()
+    local node_status_ok, node = pcall(api.tree.get_node_under_cursor)
+    if not node_status_ok then
+        vim.notify("open nvim-tree to git add/unstage")
+        return
+    end
     local gs = node.git_status.file
 
     -- If the current node is a directory get children status
