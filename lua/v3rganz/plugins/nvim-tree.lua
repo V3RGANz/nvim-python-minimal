@@ -29,14 +29,14 @@ M.opts = {
     },
     on_attach = require('v3rganz.keymaps').nvim_tree_keymaps,
     renderer = {
-        add_trailing = true,
-        indent_markers = {enable = true},
+        add_trailing = false,
+        -- indent_markers = {enable = true},
         highlight_git = true,
         icons = {
             show = {
                 file = false,
                 folder_arrow = false,
-                folder = false,
+                folder = true,
                 git = true
             },
             glyphs = {
