@@ -51,6 +51,7 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<J>", ":m .+1<CR>==", opts)
 keymap("v", "<K>", ":m .-1<CR>==", opts)
 
+-- Paste without yanking
 keymap("v", "p", '"_dP', opts)
 
 -- Visula block mode--
@@ -84,6 +85,7 @@ vim.keymap.set('n', 'ga', require('v3rganz.plugins.util.nvim-tree.git-commands')
 -- toggleterm key bindings
 vim.keymap.set('n', '<leader>g', require('v3rganz.plugins.util.toggleterm').lazygit, {})
 vim.keymap.set('n', '<C-p>', require('v3rganz.plugins.util.toggleterm').python, {})
+vim.keymap.set('n', '<M-o>b', require('v3rganz.plugins.util.toggleterm').obsidian_daily, {})
 
 
 -- closes window but not quit vim
@@ -124,7 +126,8 @@ return {
         )
         keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
         keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-        keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+        keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+        keymap("v", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
         vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
     end,
 
@@ -143,8 +146,10 @@ return {
             },
             -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             ['<CR>'] = cmp.mapping.confirm({ select = false }),
-            ["<Tab>"] = cmp_utils.supertab(cmp, luasnip),
-            ["<S-Tab>"] = cmp_utils.s_supertab(cmp, luasnip),
+
+            -- This supertab is actually bothers me sometimes
+            -- ["<Tab>"] = cmp_utils.supertab(cmp, luasnip),
+            -- ["<S-Tab>"] = cmp_utils.s_supertab(cmp, luasnip),
       })
     end,
 
