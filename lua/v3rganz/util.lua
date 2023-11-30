@@ -19,7 +19,7 @@ function M.match_path(patterns, path)
             return true
         else
         end
-      end
+    end
     return false
 end
 

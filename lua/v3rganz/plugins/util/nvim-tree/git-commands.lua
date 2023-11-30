@@ -24,6 +24,6 @@ function M.git_add_toggle()
     end
 
     api.tree.reload()
-    end
+end
 
 return M
