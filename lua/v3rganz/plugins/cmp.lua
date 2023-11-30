@@ -27,7 +27,11 @@ local M = {
                 enabled = true, -- disable it by default
                 event = "BufReadPost",
                 config = function()
-                    require("copilot").setup()
+                    require("copilot").setup({
+                        filetypes = {
+                            markdown = true,
+                        }
+                    })
                 end
                 },
             config = function ()
