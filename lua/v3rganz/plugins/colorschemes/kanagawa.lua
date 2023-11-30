@@ -23,17 +23,20 @@ local scheme_util = require('v3rganz.plugins.util.colorschemes')
 local M = {}
 
 function M.factory(style)
-    style = style or "kanagawa-dragon"
+    style = style or "dragon"
     local CS = scheme_util.get_initial_table(plug_address, 'kanagawa')
     function CS.config()
         local config = {
             theme = style,
+            colors = { theme = {
+                all = { ui = { bg_gutter = "none" } }
+            } }
         }
         if use_block_style_telescope_ui then
             config.overrides = block_style_ui_telescope
         end
         require('kanagawa').setup(config)
-        scheme_util.setup_colorscheme(CS.name)
+        scheme_util.setup_colorscheme(CS.name .. '-' .. style)
     end
     return CS
 end
