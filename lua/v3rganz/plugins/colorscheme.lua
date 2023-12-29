@@ -7,4 +7,4 @@ local schemes = {
     "marko-cerovac/material.nvim",
 }
 
-return require('v3rganz.plugins.colorschemes.kanagawa').factory('dragon')
+return require('v3rganz.plugins.colorschemes.nord').factory()
