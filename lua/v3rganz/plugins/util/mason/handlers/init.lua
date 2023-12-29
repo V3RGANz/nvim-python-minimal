@@ -54,6 +54,11 @@ M.handlers = {
                 }
             }
         })
+    end,
+    ['clangd'] = function ()
+        require("lspconfig").clangd.setup(override_opts {
+            cmd = { "clangd", "--offset-encoding=utf-16" }
+        })
     end
 }
 
