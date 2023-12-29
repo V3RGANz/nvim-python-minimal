@@ -79,9 +79,8 @@ function M.config()
       },
       mapping = require("v3rganz.keymaps").cmp_keymaps(cmp, luasnip),
       sources = {
-          {
-              name = "copilot",
-          },
+        { name = "otter" },
+        { name = "copilot" },
         {
             name = "nvim_lsp",
             entry_filter = function (entry, ctx)
@@ -97,6 +96,7 @@ function M.config()
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
+        { name = "spell" }
       }
     })
 end

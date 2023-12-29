@@ -175,4 +175,19 @@ return {
     autopairs_fast_wrap = '<M-e>',
 
     toggleterm = [[<c-\>]],
+
+    molten_keymaps = function ()
+        local function opts(desc)
+            return {
+                desc = 'Molten: ' .. desc,
+                noremap = true,
+                silent = true,
+                nowait = true
+            }
+        end
+        keymap("n", "<leader>r", ":MoltenEvaluateOperator<CR>", opts("Evaluate Operator"))
+	keymap("n", "<leader>l", ":MoltenEvaluateLine<CR>", opts("Evaluate Line"))
+	keymap("n", "<leader>so", ":noautocmd MoltenEnterOutput<CR>", opts("Show Output (Enter Output if executed twice)"))
+	keymap("n", "<leader>rr", ":MoltenReevaluateCell<CR>", opts("Reevaluate Cell"))
+    end,
 }
