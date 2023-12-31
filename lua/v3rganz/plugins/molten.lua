@@ -5,7 +5,7 @@ local M = {
     "benlubas/molten-nvim",
     --version = "^1.0.0",
     build = ":UpdateRemotePlugins",
-    event = "BufRead",
+    event = {"VeryLazy", "BufRead"},
     init = function()
         vim.g.molten_image_provider = "image.nvim"
         vim.g.molten_virt_text_output = true

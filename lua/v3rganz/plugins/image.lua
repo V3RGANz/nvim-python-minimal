@@ -8,7 +8,7 @@ local env = "export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion) && "
 
 local M = {
     "3rd/image.nvim",
-    event = "BufRead",
+    event = {"VeryLazy", "BufRead"},
     config = function ()
         require("image").setup {
             backend = "kitty",
@@ -37,6 +37,10 @@ local M = {
             build = env .. "pip3 install --user hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
             config = function()
                 require("nvim_rocks").ensure_installed({ "magick" })
+                local status_ok, _ = pcall(require, "magick")
+                if not status_ok then
+                    vim.api.nvim_notify("can't find magick rock.", vim.log.levels.ERROR, {})
+                end
             end
         }
     }

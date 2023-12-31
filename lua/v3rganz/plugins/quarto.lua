@@ -1,6 +1,6 @@
 local M = {
     "quarto-dev/quarto-nvim",
-    event = "VimEnter",
+    event = {"VeryLazy", "BufRead"},
     dev = false,
     dependencies = {
         {
