@@ -46,4 +46,11 @@ function M.script_parent_location()
    return str:match("(.*/)") or "./"
 end
 
+function M.path_is_file(path)
+    local file = io.open(path, 'r')
+    if file == nil then return false end
+    io.close(file)
+    return false
+end
+
 return M
