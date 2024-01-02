@@ -14,7 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 -- why?
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
-require('lazy').setup('v3rganz.plugins', {
+require('lazy').setup({
+    spec = LAZY_PLUGIN_SPEC,
     install= {colorscheme = {require('v3rganz.plugins.colorscheme').name}},
     defaults = {lazy = true},
     ui = {wrap = "true"},

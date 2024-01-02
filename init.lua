@@ -1,3 +1,27 @@
 require "v3rganz.keymaps"
-require "v3rganz.lazynvim"
 require "v3rganz.options"
+require "v3rganz.lazyspecs"
+
+spec "v3rganz.plugins.basic_specs" -- simple enogh to not create separate file for each
+
+spec "v3rganz.plugins.autopairs"
+spec "v3rganz.plugins.bufferline"
+spec "v3rganz.plugins.cmp"
+spec "v3rganz.plugins.colorscheme"
+spec "v3rganz.plugins.comment"
+spec "v3rganz.plugins.git"
+spec "v3rganz.plugins.image"
+spec "v3rganz.plugins.lsp"
+spec "v3rganz.plugins.lualine"
+spec "v3rganz.plugins.mason"
+spec "v3rganz.plugins.molten"
+spec "v3rganz.plugins.noice"
+spec "v3rganz.plugins.null-ls"
+spec "v3rganz.plugins.nvim-tree"
+spec "v3rganz.plugins.obsidian"
+spec "v3rganz.plugins.quarto"
+spec "v3rganz.plugins.telescope"
+spec "v3rganz.plugins.toggleterm"
+spec "v3rganz.plugins.treesitter"
+
+require "v3rganz.lazynvim"
