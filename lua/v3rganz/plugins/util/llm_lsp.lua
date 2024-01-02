@@ -9,7 +9,8 @@ local function open_floating_preview(content, opts)
         max_width = preview_width + 1,
         focusable = true
     })
-    vim.lsp.util.open_floating_preview(lines, "markdown", opts)
+    local _, winnr = vim.lsp.util.open_floating_preview(lines, "markdown", opts)
+    vim.api.nvim_set_current_win(winnr)
 end
 
 local function executeCommand(err, result, ctx, cfg)
@@ -161,14 +162,17 @@ M.handlers = {
 local cmd = '/Users/Evgeny.Dedov/development/rust/llm-lsp/target/release/llm-lsp'
 
 function M.setup()
-    if not require("v3rganz.util").path_is_file(cmd) then return end
+    if not require("v3rganz.util").path_is_file(cmd) then
+        vim.api.nvim_err_writeln('llm-lsp executable not found')
+        return
+    end
     local lsp_ok, lspconfig = pcall(require, "lspconfig")
     local configs_ok, configs = pcall(require, "lspconfig.configs")
 
     if not (lsp_ok and configs_ok) then return end
 
     local default_config = {
-        cmd = cmd,
+        cmd = {cmd},
         -- just add bunch of acceptable filetypes
         filetypes = {"rust", "python", "lua", "javascript", "typescript", "sh", "cpp", "c", "go"},
         root_dir = function(fname)
@@ -186,6 +190,7 @@ function M.setup()
     }
     if not configs.llm_lsp then configs.llm_lsp = {default_config = default_config} end
     lspconfig.llm_lsp.setup {handlers = M.handlers}
+    vim.api.nvim_notify("llm-lsp configured", vim.log.levels.INFO, {})
 end
 
 return M
