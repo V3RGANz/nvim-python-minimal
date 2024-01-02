@@ -50,7 +50,7 @@ function M.path_is_file(path)
     local file = io.open(path, 'r')
     if file == nil then return false end
     io.close(file)
-    return false
+    return true
 end
 
 return M
