@@ -190,4 +190,20 @@ return {
 	keymap("n", "<leader>so", ":noautocmd MoltenEnterOutput<CR>", opts("Show Output (Enter Output if executed twice)"))
 	keymap("n", "<leader>rr", ":MoltenReevaluateCell<CR>", opts("Reevaluate Cell"))
     end,
+
+    quarto_keymaps = function ()
+        local status_ok, runner = pcall(require, "quarto.runner")
+        if not status_ok then return end
+
+        local function opts(desc)
+            return {
+                desc = 'Quarto: ' .. desc,
+                noremap = true,
+                silent = true,
+                nowait = true
+            }
+        end
+
+        vim.keymap.set("n", "<leader>rc", runner.run_cell, opts("Run cell"))
+    end
 }
