@@ -25,6 +25,13 @@ local available_separators = {
     }
 }
 
+local status_ok, lualine_util = pcall(require, 'v3rganz.plugins.util.lualine')
+
+if not status_ok then
+    vim.api.nvim_err_writeln('Failed to load v3rganz.plugins.util.lualine')
+    return M
+end
+
 local function get_current_buffer_filename()
     local bufname = vim.api.nvim_buf_get_name(0)
     return bufname ~= '' and vim.fn.fnamemodify(bufname, ':.') or ''
@@ -59,10 +66,14 @@ function M.config()
                     colored = true
                 },
                 {
-                    require("v3rganz.plugins.util.lualine").lsp_bar,
+                    lualine_util.lsp_bar,
                     icon = '',
                     -- color = { fg = '#ffffff', gui = 'bold' },
                 },
+                {
+                    lualine_util.virtualenv_bar.name,
+                    icon = lualine_util.virtualenv_bar.icon(),
+                }
             },
             lualine_c = {get_current_buffer_filename},
             lualine_x = {},

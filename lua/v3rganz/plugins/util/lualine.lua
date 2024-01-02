@@ -27,4 +27,25 @@ function M.lsp_bar()
     return msg
 end
 
+-- python virtual environment name
+M.virtualenv_bar = {
+    icon = function()
+        local venv = vim.env.VIRTUAL_ENV
+        if venv ~= nil then
+            return '🐍'
+        else
+            return ''
+        end
+    end,
+    --- @return string
+    name = function()
+        local venv = vim.env.VIRTUAL_ENV
+        if venv ~= nil then
+            return venv:match("([^/]+)$")
+        else
+            return ''
+        end
+    end,
+}
+
 return M
