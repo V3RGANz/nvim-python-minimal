@@ -190,7 +190,6 @@ function M.setup()
     }
     if not configs.llm_lsp then configs.llm_lsp = {default_config = default_config} end
     lspconfig.llm_lsp.setup {handlers = M.handlers}
-    vim.api.nvim_notify("llm-lsp configured", vim.log.levels.INFO, {})
 end
 
 return M
