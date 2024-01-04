@@ -8,7 +8,7 @@ function M.config()
         size = 30,
         open_mapping = require("v3rganz.keymaps").toggleterm,
     }
-    require('v3rganz.plugins.util.toggleterm').setup()
+    require('v3rganz.plugins.util.toggleterm').setup { use_quarto = true }
 end
 
 return M

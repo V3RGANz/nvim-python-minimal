@@ -98,6 +98,10 @@ keymap('n', 'ga', require('v3rganz.plugins.util.nvim-tree.git-commands').git_add
 -- toggleterm key bindings
 keymap('n', '<leader>g', require('v3rganz.plugins.util.toggleterm').lazygit, basic_opts("Toggle [G]it"))
 keymap('n', '<C-p>', require('v3rganz.plugins.util.toggleterm').python, basic_opts("Toggle [P]ython"))
+keymap('t', '<C-p>', function ()
+    vim.cmd 'stopinsert'
+    require('v3rganz.plugins.util.toggleterm').python()
+end, { noremap = true, silent = true })
 keymap('n', '<M-o>b', require('v3rganz.plugins.util.toggleterm').obsidian_daily, basic_opts("Toggle [O]bsidian [D]aily"))
 
 
@@ -193,8 +197,7 @@ return {
         local opts = create_opts_factory({desc_prefix = "Quarto: "})
 
         local function create_cell()
-            local bufname = vim.fn.expand("%:t")
-            if not string.match(bufname, "%.qmd$") then return end
+            if vim.bo.filetype ~= 'quarto' then return end
             vim.api.nvim_feedkeys("o```{python}\n\n```\x1bk", "n", false)
         end
 

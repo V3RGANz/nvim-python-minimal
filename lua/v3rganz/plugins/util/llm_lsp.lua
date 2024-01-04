@@ -163,7 +163,7 @@ local cmd = '/Users/Evgeny.Dedov/development/rust/llm-lsp/target/release/llm-lsp
 
 function M.setup()
     if not require("v3rganz.util").path_is_file(cmd) then
-        vim.api.nvim_err_writeln('llm-lsp executable not found')
+        -- vim.api.nvim_notify('llm-lsp executable not found', vim.log.levels.WARN, {})
         return
     end
     local lsp_ok, lspconfig = pcall(require, "lspconfig")

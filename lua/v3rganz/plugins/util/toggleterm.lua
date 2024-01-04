@@ -15,10 +15,37 @@ local obsidian_daily_cmd = require('v3rganz.util').str_join({
     'startinsert'
 }, ' -c ')
 
-function M.setup()
+local function markdown_codeblock(language, content)
+    return '\\`\\`\\`{' .. language .. '}\n' .. content .. '\n\\`\\`\\`'
+end
+
+local quarto_notebook_cmd = require('v3rganz.util').str_join({
+    'nvim',
+    'enew',
+    '"set filetype=quarto"',
+    '"norm GO## IPython\nThis is Quarto IPython notebook. Syntax is the same as in markdown\n\n' .. markdown_codeblock('python', '# enter code here\n') .. '"',
+    '"norm Gkk"',
+
+    -- This line needed because QuartoActivate and MoltenInit commands must be accessible; should be adjusted depending on plugin manager
+    "\"lua require('lazy.core.loader').load({'molten-nvim', 'quarto-nvim'}, {cmd = 'Lazy load'})\"",
+    '"MoltenInit python3"',
+    'QuartoActivate',
+
+    'startinsert'
+}, ' -c ')
+
+---setup toggleterm
+---@param opts {use_quarto: boolean}
+function M.setup(opts)
+    local python_cmd = 'python3'
+    if opts.use_quarto then
+        python_cmd = quarto_notebook_cmd
+    end
+    -- print(python_cmd)
+
     local Terminal = require("toggleterm.terminal").Terminal
     M.terminals.lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = 'float'})
-    M.terminals.python = Terminal:new({ cmd = 'python3', hidden = true, direction = 'float'})
+    M.terminals.python = Terminal:new({ cmd = python_cmd, hidden = true, direction = 'float'})
     M.terminals.obsidian_daily = Terminal:new({ cmd = obsidian_daily_cmd, hidden = true, direction = 'float'})
 end
 
